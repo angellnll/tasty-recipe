@@ -4,7 +4,8 @@
     <textarea
       class="form-control"
       :id="identity"
-      :placeholder="placeholder"
+      @keyup="emit('update:modelValue', $event.target.value)"
+      v-text="modelValue"
     ></textarea>
   </div>
 </template>
@@ -14,5 +15,8 @@ defineProps({
   identity: { type: String, require: true },
   label: { type: String, require: true },
   placeholder: { type: String, require: true },
+  modelValue: { type: String }
 });
+
+let emit = defineEmits(['update:modelValue']);
 </script>

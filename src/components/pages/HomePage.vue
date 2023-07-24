@@ -10,7 +10,6 @@
     </div>
     <!-- Recipe List Component -->
     <recipe-list :recipes="recipeList" v-if="recipeListStatus"></recipe-list>
-    <!-- {{ recipeList }} -->
   </div>
 </template>
 
