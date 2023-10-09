@@ -25,7 +25,7 @@ export default {
         }
     },
     actions: {
-        async getRecipeData({ commit }) {
+        async getRecipeData({commit}) {
             try {
                 const { data } = await axios.get("https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes.json")
                 const arr = []
@@ -33,8 +33,8 @@ export default {
                     arr.push({ id: key, ...data[key] })
                 }
                 commit("setRecipeData", arr)
-            } catch (err) {
-                console.log(err)
+            } catch (error) {
+                console.log(error);
             }
         },
         async getRecipeDetail({ commit }, payload) {

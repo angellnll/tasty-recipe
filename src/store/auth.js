@@ -10,6 +10,11 @@ export default {
       isLogin: false,
     };
   },
+  getters: {
+    getToken(state) {
+      return state.token
+    }
+  },
   mutations: {
     setToken(state, { idToken, expiresIn }) {
       state.token = idToken;
@@ -26,9 +31,9 @@ export default {
       state.userLogin = {}
       state.isLogin = false
       state.tokenExpirationDate = null
-      Cookies.remove("jwt");
-      Cookies.remove("tokenExpirationDate");
-      Cookies.remove("UID");
+      Cookies.remove("jwt"); //Token 
+      Cookies.remove("tokenExpirationDate"); // Waktu expired
+      Cookies.remove("UID"); //User id
     }
   },
   actions: {
@@ -58,11 +63,7 @@ export default {
       const authUrl =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
       try {
-        const { data } = await axios.post(authUrl + APIkey, {
-          email: payload.email,
-          password: payload.password,
-          returnSecureToken: true,
-        });
+        const { data } = await axios.post(authUrl + APIkey, { email: payload.email, password: payload.password, returnSecureToken: true });
 
         commit("setToken", {
           idToken: data.idToken,

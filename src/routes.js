@@ -42,7 +42,7 @@ export const routes = [
   },
   { path: "/signup", name: "signup", component: SignupPage },
   { path: "/login", name: "login", component: LoginPage },
-  { path: "/recipe/:id", name: "detailPage", component: DetailPage },
+  { path: "/recipe/:id", name: "detailPage", component: DetailPage, beforeEnter: () => { checkAuth() } },
   {
     path: "/user/:component",
     name: "userPage",

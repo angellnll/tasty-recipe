@@ -10,6 +10,7 @@
     </div>
     <!-- Recipe List Component -->
     <recipe-list :recipes="recipeList" v-if="recipeListStatus"></recipe-list>
+    <!-- <p v-else>Lading......</p> -->
   </div>
 </template>
 
@@ -22,7 +23,7 @@ const store = useStore();
 const recipeListStatus = ref(false);
 const recipeList = ref();
 
-onMounted(async () => {
+async function getData() {
   try {
     await store.dispatch("recipe/getRecipeData");
     recipeListStatus.value = true;
@@ -30,5 +31,17 @@ onMounted(async () => {
   } catch (error) {
     console.log(error);
   }
-});
+}
+
+getData()
+
+// onMounted(async () => {
+//   try {
+//     await store.dispatch("recipe/getRecipeData");
+//     recipeListStatus.value = true;
+//     recipeList.value = store.state.recipe.recipes;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 </script>
