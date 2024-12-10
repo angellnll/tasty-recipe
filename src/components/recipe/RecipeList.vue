@@ -51,15 +51,15 @@ const props = defineProps({
 const store = useStore();
 
 const isLike = (likeData) => {
-  if (likeData.length === 0) {
+  if (likeData?.length === 0) {
     if (likeData[0] === "null") {
       return false;
     }
   } else {
-    const data = likeData.find(
+    const data = likeData?.find(
       (like) => like === store.state.auth.userLogin.userId
     );
-    console.log(data)
+   
     if (data === undefined) {
       return false;
     } else {
